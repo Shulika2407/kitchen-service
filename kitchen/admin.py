@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from cook.models import (Cook, Dish,
-                         DishType, Ingredient)
+from kitchen.models import (Cook, Dish,
+                            DishType, Ingredient)
 
 
 # Register your models here.
