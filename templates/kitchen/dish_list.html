@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Dish List</h1>
+  {% if dish_list %}
+    <ul>
+      {% for dish in dish_list %}
+        <li>
+        <strong>{{ dish.name }}, price({{ dish.price }})</strong><br>
+        Discription: {{ dish.discription }}<br>
+        </li>
+        <br>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no dish in kitchen</p>
+  {% endif %}
+{% endblock %}
