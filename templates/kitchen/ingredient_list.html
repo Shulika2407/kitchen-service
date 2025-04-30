@@ -1,11 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Ingredient List</h1>
+  <h1>
+    Ingredient List
+    <a href="{% url 'kitchen:ingredient-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
   {% if ingredient_list %}
-    <ul>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
       {% for ingredient in ingredient_list %}
-        <li>{{ ingredient.name }} ({{ ingredient.calories_per_100g }})</li>
+        <tr>
+          <td>
+            {{ ingredient.id }}
+          </td>
+          <td>{{ ingredient.name }} ({{ ingredient.calories_per_100g }})</td>
+          <td>
+            <a href="{% url 'kitchen:ingredient-update' pk=ingredient.id %}">
+              Update
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'kitchen:ingredient-delete' pk=ingredient.id %}">
+              Delete
+            </a>
+          </td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
+  {% else %}
+      <p>There are no ingredients in the service.</p>
   {% endif %}
 {% endblock %}

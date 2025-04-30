@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Dish List</h1>
+  <h1>
+    Dish List
+    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
   {% if dish_list %}
     <ul>
       {% for dish in dish_list %}
         <li>
-        <strong>{{ dish.name }}, price({{ dish.price }})</strong><br>
+        <strong>
+          <a href="{% url "kitchen:dish-detail" pk=dish.id %} ">{{ dish.id }} {{ dish.name }}</a>
+          , price({{ dish.price }})
+        </strong><br>
         Discription: {{ dish.discription }}<br>
         </li>
         <br>
