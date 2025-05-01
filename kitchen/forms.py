@@ -49,3 +49,27 @@ class CookUpdateForm(forms.ModelForm):
 
     def clean_license_number(self):  # this logic is optional, but possible
         return validate_years_of_experience(self.cleaned_data["years_of_experience"])
+
+
+class CookTitleSearchForm(forms.Form):
+    username = forms.CharField(max_length=255,
+                               required=False,
+                               label="",)
+
+
+class DishTitleSearchForm(forms.Form):
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",)
+
+
+class IngredientSearchForm(forms.Form):
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",)
+
+
+class DishTypeSearchForm(forms.Form):
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",)

@@ -6,15 +6,31 @@
       Create
     </a>
   </h1>
+  <form action="" method="get" class="form-inline my-3">
+    <div class="input-group" style="width: 400px;">
+      <input
+        type="text"
+        name="name"
+        value="{{ request.GET.name }}"
+        placeholder="Search by name"
+        class="form-control"
+      >
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="submit">
+          🔍
+        </button>
+      </div>
+    </div>
+  </form>
   {% if dish_list %}
     <ul>
       {% for dish in dish_list %}
         <li>
-        <strong>
-          <a href="{% url "kitchen:dish-detail" pk=dish.id %} ">{{ dish.id }} {{ dish.name }}</a>
-          , price({{ dish.price }})
-        </strong><br>
-        Discription: {{ dish.discription }}<br>
+          <strong>
+            <a href="{% url "kitchen:dish-detail" pk=dish.id%} ">{{ dish.id }} {{ dish.name }}</a>
+            , price({{ dish.price }})
+          </strong><br>
+          Description: {{ dish.description }}<br>
         </li>
         <br>
       {% endfor %}

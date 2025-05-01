@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 {% block content %}
   <h1>
     Cook List
@@ -6,6 +7,23 @@
       Create
     </a>
   </h1>
+  <form action="" method="get" class="form-inline my-3">
+    <div class="input-group" style="width: 400px;">
+      <input
+        type="text"
+        name="username"
+        value="{{ request.GET.username }}"
+        placeholder="Search by username"
+        class="form-control"
+      >
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="submit">
+          🔍
+        </button>
+      </div>
+    </div>
+  </form>
+
   {% if cook_list %}
     <ul>
       <table class="table">
