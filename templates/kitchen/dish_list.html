@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>
-    Dish List
-    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
-  <form action="" method="get" class="form-inline my-3">
-    <div class="input-group" style="width: 400px;">
+  <div>
+    <h1>
+      Dish List
+      <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    </h1>
+  </div>
+  <form action="" method="get" class="my-3">
+    <div class="search-box-wrapper">
       <input
         type="text"
         name="name"
         value="{{ request.GET.name }}"
         placeholder="Search by name"
-        class="form-control"
+        class="search-input"
       >
-      <div class="input-group-append">
-        <button class="btn btn-outline-primary" type="submit">
-          🔍
-        </button>
-      </div>
+      <button type="submit" class="search-button">
+        🔍
+      </button>
     </div>
   </form>
   {% if dish_list %}

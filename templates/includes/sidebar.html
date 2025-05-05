@@ -1,10 +1,10 @@
-<ul class="sidebar-nav list-group">
+<ul class="sidebar-nav list-group mt-4">
   {% if user.is_authenticated %}
     <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
     <li class="list-group-item">
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
-        <button type="submit">logout</button>
+        <button type="submit" class="btn btn-primary">logout</button>
       </form>
     </li>
 
@@ -14,20 +14,35 @@
 
   <br>
 
-<ul>
-  <li>
-    <a href="{% url "kitchen:index" %}">Home page</a>
-  </li>
-  <li>
-    <a href="{% url "kitchen:dish-type-list" %}">DishType</a>
-  </li>
-  <li>
-    <a href="{% url "kitchen:dish-list" %}">Dish</a>
-  </li>
-  <li>
-    <a href="{% url "kitchen:cook-list" %}">Cook</a>
-  </li>
-  <li>
-    <a href="{% url "kitchen:ingredient-list" %}">Ingredient</a>
-  </li>
-</ul>
+
+
+{#<ul>#}
+{#  <li>#}
+{#    <a href="{% url "kitchen:index" %}">Home page</a>#}
+{#  </li>#}
+{#  <li>#}
+{#    <a href="{% url "kitchen:dish-type-list" %}">DishType</a>#}
+{#  </li>#}
+{#  <li>#}
+{#    <a href="{% url "kitchen:dish-list" %}">Dish</a>#}
+{#  </li>#}
+{#  <li>#}
+{#    <a href="{% url "kitchen:cook-list" %}">Cook</a>#}
+{#  </li>#}
+{#  <li>#}
+{#    <a href="{% url "kitchen:ingredient-list" %}">Ingredient</a>#}
+{#  </li>#}
+{#</ul>#}
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="kitchenDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    Kitchen menu
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="kitchenDropdown">
+    <li><a class="dropdown-item" href="{% url 'kitchen:index' %}">Home page</a></li>
+    <li><a class="dropdown-item" href="{% url 'kitchen:dish-type-list' %}">DishType</a></li>
+    <li><a class="dropdown-item" href="{% url 'kitchen:dish-list' %}">Dish</a></li>
+    <li><a class="dropdown-item" href="{% url 'kitchen:cook-list' %}">Cook</a></li>
+    <li><a class="dropdown-item" href="{% url 'kitchen:ingredient-list' %}">Ingredient</a></li>
+  </ul>
+</div>

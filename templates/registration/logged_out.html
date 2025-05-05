@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'login'%}">Click here to login again.</a>
+  <div class="background-container">
+    <div class="content-wrapper index-page">
+      <p>Logged out!</p>
+      <a href="{% url 'login' %}" class="btn">Click here to login again.</a>
+    </div>
+  </div>
 {% endblock %}
