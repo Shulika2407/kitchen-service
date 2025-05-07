@@ -14,7 +14,6 @@ from .views import (
     DishTypeDeleteView,
     IngredientCreateView, IngredientUpdateView,
     IngredientDeleteView, toggle_assign_to_dish,
-
 )
 
 

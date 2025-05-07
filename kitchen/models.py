@@ -12,7 +12,6 @@ class DishType(models.Model):
     def __str__(self):
         return self.name
 
-
 class Cook(AbstractUser):
     years_of_experience = models.IntegerField(default=0)
 
