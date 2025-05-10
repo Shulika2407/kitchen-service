@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>
+    Ingredient List
+    <a href="{% url 'kitchen:ingredient-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  <form action="" method="get" class="my-3">
+    <div class="search-box-wrapper">
+      <input
+        type="text"
+        name="name"
+        value="{{ request.GET.name }}"
+        placeholder="Search by name"
+        class="search-input"
+      >
+      <button type="submit" class="search-button">
+        🔍
+      </button>
+    </div>
+  </form>
+  {% if ingredient_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th colspan="2" class="text-center">Actions</th>
+      </tr>
+      {% for ingredient in ingredient_list %}
+        <tr>
+          <td>
+            {{ ingredient.id }}
+          </td>
+          <td>{{ ingredient.name }} ({{ ingredient.calories_per_100g }})</td>
+          <td class="text-center">
+            <a href="{% url 'kitchen:ingredient-update' pk=ingredient.id %}" class="text-info">
+              <i class="fas fa-edit fa-2x"></i>  <!-- Font Awesome Edit Icon -->
+            </a>
+          </td>
+          <td class="text-center">
+              <a href="{% url 'kitchen:ingredient-delete' pk=ingredient.id %}" class="text-danger">
+                <i class="fas fa-trash-alt fa-2x"></i>  <!-- Font Awesome Trash Icon -->
+              </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+      <p>There are no ingredients in the service.</p>
+  {% endif %}
+{% endblock %}
