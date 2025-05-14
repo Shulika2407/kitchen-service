@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <div>
+    <h1>
+      Dish List
+      <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    </h1>
+  </div>
+  <form action="" method="get" class="my-3">
+    <div class="search-box-wrapper">
+      <input
+        type="text"
+        name="name"
+        value="{{ request.GET.name }}"
+        placeholder="Search by name"
+        class="search-input"
+      >
+      <button type="submit" class="search-button">
+        🔍
+      </button>
+    </div>
+  </form>
+  {% if dish_list %}
+    <ul>
+      {% for dish in dish_list %}
+        <li>
+          <strong>
+            <a href="{% url "kitchen:dish-detail" pk=dish.id%} ">{{ dish.id }} {{ dish.name }}</a>
+            , price({{ dish.price }})
+          </strong><br>
+          Description: {{ dish.description }}<br>
+        </li>
+        <br>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no dish in kitchen</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="background-container index-page">
+    <div class="content-wrapper">
+      <h1>Kitchen Service Home</h1>
+      <p>Welcome to Best Kitchen Ever!</p>
+      <h2>Dynamic content</h2>
+      <p>The Kitchen service has the following record count:</p>
+      <ul>
+        <li><strong>DishType:</strong> {{ num_dishTypes }}</li>
+        <li><strong>Dish:</strong> {{ num_dishes }}</li>
+        <li><strong>Cook:</strong> {{ num_cook }}</li>
+        <li><strong>Ingredient:</strong> {{ num_ingredient }}</li>
+      </ul>
+      <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+    </div>
+  </div>
+{% endblock %}
+

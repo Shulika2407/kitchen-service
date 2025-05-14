@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+  <div>
+    <h1>
+      Dish Type
+      <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary link-to-page">
+        CREATE
+      </a>
+    </h1>
+  </div>
+  <form action="" method="get" class="my-3">
+    <div class="search-box-wrapper">
+      <input
+        type="text"
+        name="name"
+        value="{{ request.GET.name }}"
+        placeholder="Search by name"
+        class="search-input"
+      >
+      <button type="submit" class="search-button">
+        🔍
+      </button>
+    </div>
+  </form>
+  {% if dish_type_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th colspan="2" class="text-center">Actions</th>
+      </tr>
+      {% for dish_type in  dish_type_list %}
+          <tr>
+            <td>
+                {{ dish_type.id }}
+            </td>
+            <td>
+                {{ dish_type.name }}
+            </td>
+            <td class="text-center">
+                <a href="{% url 'kitchen:dish-type-update' pk=dish_type.id %}" class="text-info">
+                  <i class="fas fa-edit fa-2x"></i>  <!-- Font Awesome Edit Icon -->
+                </a>
+            </td>
+            <td class="text-center">
+                <a href="{% url 'kitchen:dish-type-delete' pk=dish_type.id %}" class="text-danger">
+                  <i class="fas fa-trash-alt fa-2x"></i>  <!-- Font Awesome Trash Icon -->
+                </a>
+            </td>
+          </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+      <p>There are no dish type in the service.</p>
+  {% endif %}
+{% endblock %}
