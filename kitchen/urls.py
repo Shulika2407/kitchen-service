@@ -14,11 +14,13 @@ from .views import (
     DishTypeDeleteView,
     IngredientCreateView, IngredientUpdateView,
     IngredientDeleteView, toggle_assign_to_dish,
+    register_user,
 )
 
 
 urlpatterns = [
     path("", index, name='index'),
+    path('register/', register_user, name="register"),
     path("dishtype/",
          DishTypeListView.as_view(),
          name="dish-type-list",

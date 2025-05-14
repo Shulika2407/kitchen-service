@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 DEBUG = os.getenv("DJANGO_DEBUG", "") != "False"
-
+#DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -67,9 +67,13 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
+# STATIC_URL = "static/"
+# STATIC_ROOT = "staticfiles/"
+# STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_URL = "static/"
-STATIC_ROOT = "staticfiles/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = (BASE_DIR / "static",)
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "kitchen.Cook"

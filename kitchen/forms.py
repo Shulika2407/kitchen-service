@@ -4,6 +4,45 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
 from kitchen.models import Dish, Ingredient, Cook
+from django.contrib.auth.models import User
+
+
+class SignUpForm(UserCreationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Username",
+                "class": "form-control"
+            }
+        ))
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder": "Email",
+                "class": "form-control"
+            }
+        ))
+
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={
+            "placeholder": "Password",
+            "class": "form-control"
+        })
+    )
+
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder": "Password check",
+                "class": "form-control",
+                "label": "Password check",
+            }
+        ))
+
+    class Meta:
+        model = Cook
+        fields = ('username', 'email', 'password1', 'password2')
 
 
 class DishForm(forms.ModelForm):

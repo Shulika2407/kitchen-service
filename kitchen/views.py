@@ -1,7 +1,7 @@
 from msilib.schema import ListView
-
+from django.views.generic import CreateView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -11,8 +11,36 @@ from kitchen.forms import (DishForm,
                            CookTitleSearchForm,
                            DishTitleSearchForm,
                            IngredientSearchForm,
-                           DishTypeSearchForm,)
+                           DishTypeSearchForm,
+                           SignUpForm)
 from kitchen.models import DishType, Dish, Cook, Ingredient
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate
+
+
+def register_user(request):
+    msg = None
+    success = False
+
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get("username")
+            raw_password = form.cleaned_data.get("password1")
+            user = authenticate(username=username, password=raw_password)
+
+            msg = 'Account created successfully.'
+            success = True
+
+        else:
+            msg = 'Form is not valid'
+    else:
+        form = SignUpForm()
+
+    return render(request, "registration/register.html",
+                  {"form": form, "msg": msg,
+                   "success": success})
 
 
 # Create your views here.
